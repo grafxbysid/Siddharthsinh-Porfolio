@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Siddharthsinh Rajput - UI/UX Designer</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#3B82F6',secondary:'#F97316'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+:root {
+--morning-color: #E6F3FF;
+--afternoon-color: #FFD580;
+--evening-color: #FF7F50;
+--night-color: #1E293B;
+--text-primary: #1C1C1E;
+--text-soft: rgba(28, 28, 30, 0.8);
+--icon-primary: #3B82F6;
+--icon-soft: rgba(59, 130, 246, 0.8);
+--border-color: rgba(255, 255, 255, 0.1);
+--card-bg: rgba(255, 255, 255, 0.1);
+--transition-base: all 0.3s ease;
+}
+.shooting-star {
+position: absolute;
+width: 120px;
+height: 1.5px;
+background: linear-gradient(90deg,
+rgba(255,255,255,0) 0%,
+rgba(255,255,255,0.95) 50%,
+rgba(255,255,255,0) 100%
+);
+filter: blur(0.8px);
+border-radius: 100px;
+transform-origin: left center;
+box-shadow:
+0 0 3px rgba(255,255,255,0.4),
+0 0 8px rgba(255,255,255,0.2),
+0 0 16px rgba(135,206,235,0.1);
+}
+@keyframes shoot {
+0% {
+transform: translateX(0) scaleX(1) rotate(var(--angle));
+opacity: 0;
+}
+10% {
+opacity: 1;
+}
+100% {
+transform: translateX(var(--travel-distance)) scaleX(0.8) rotate(var(--angle));
+opacity: 0;
+}
+}
+.celestial-body {
+position: fixed;
+top: 2rem;
+right: 2rem;
+width: 80px;
+height: 80px;
+border-radius: 50%;
+z-index: 10;
+transition: all 0.5s ease;
+}
+.sun-rays {
+position: absolute;
+inset: -50%;
+background: radial-gradient(circle at center, rgba(255,255,255,0.2) 0%, transparent 70%);
+animation: rotate 20s linear infinite;
+}
+.lens-flare {
+position: absolute;
+width: 200%;
+height: 200%;
+top: -50%;
+left: -50%;
+background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 60%);
+mix-blend-mode: screen;
+opacity: 0;
+transition: opacity 0.5s ease;
+}
+.cloud-layer {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+height: 100vh;
+pointer-events: none;
+z-index: 5;
+}
+.cloud {
+position: absolute;
+background: rgba(255,255,255,0.1);
+border-radius: 50px;
+filter: blur(20px);
+}
+.stars {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+z-index: 4;
+pointer-events: none;
+}
+.star {
+position: absolute;
+width: 2px;
+height: 2px;
+background: white;
+border-radius: 50%;
+}
+.ambient-particles {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+height: 100vh;
+pointer-events: none;
+z-index: 3;
+}
+@keyframes rotate {
+from { transform: rotate(0deg); }
+to { transform: rotate(360deg); }
+}
+@keyframes twinkle {
+0%, 100% { opacity: 0.2; }
+50% { opacity: 1; }
+}
+@keyframes float {
+0%, 100% { transform: translateY(0); }
+50% { transform: translateY(-20px); }
+}
+.celestial-body::before {
+content: '';
+position: absolute;
+inset: -15px;
+border-radius: 50%;
+background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%);
+}
+.morning-sun {
+background: radial-gradient(circle at center, #FFE5B4 0%, #FFB74D 100%);
+box-shadow: 0 0 60px rgba(255, 183, 77, 0.4);
+}
+.afternoon-sun {
+background: radial-gradient(circle at center, #FFFFFF 0%, #FFD700 100%);
+box-shadow: 0 0 80px rgba(255, 215, 0, 0.6);
+}
+.evening-sun {
+background: radial-gradient(circle at center, #FF8C42 0%, #FF5722 100%);
+box-shadow: 0 0 60px rgba(255, 87, 34, 0.4);
+}
+.night-moon {
+background: radial-gradient(circle at center, #FFFFFF 0%, #E1E1E1 100%);
+box-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+}
+.morning-mist {
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+height: 100vh;
+background: linear-gradient(180deg, rgba(230, 243, 255, 0.3) 0%, rgba(230, 243, 255, 0) 100%);
+pointer-events: none;
+}
+.text-dynamic {
+color: var(--text-primary);
+transition: color 0.5s ease;
+}
+.text-dynamic-soft {
+color: var(--text-soft);
+transition: color 0.5s ease;
+}
+body {
+font-family: 'Space Grotesk', sans-serif;
+overflow-x: hidden;
+background-color: var(--morning-color);
+transition: background-color 1s ease;
+}
+.custom-cursor {
+position: fixed;
+width: 20px;
+height: 20px;
+border-radius: 50%;
+background-color: rgba(59, 130, 246, 0.5);
+pointer-events: none;
+transform: translate(-50%, -50%);
+mix-blend-mode: difference;
+z-index: 9999;
+transition: width 0.3s, height 0.3s, background-color 0.3s;
+}
+.custom-cursor.hover {
+width: 40px;
+height: 40px;
+background-color: rgba(249, 115, 22, 0.5);
+}
+.section {
+min-height: 100vh;
+transition: opacity 0.5s ease;
+}
+.animate-in {
+opacity: 0;
+transform: translateY(50px);
+transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.animate-in.visible {
+opacity: 1;
+transform: translateY(0);
+}
+.skill-progress {
+position: relative;
+width: 100px;
+height: 100px;
+}
+.skill-progress svg {
+transform: rotate(-90deg);
+}
+.skill-progress circle {
+fill: none;
+stroke-width: 8;
+stroke-linecap: round;
+}
+.skill-progress .bg {
+stroke: rgba(255, 255, 255, 0.2);
+}
+.skill-progress .progress {
+stroke: currentColor;
+transition: stroke-dashoffset 1s ease;
+}
+.project-card {
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.project-card:hover {
+transform: translateY(-10px) scale(1.02);
+box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+.project-card .overlay {
+opacity: 0;
+transition: opacity 0.3s ease;
+}
+.project-card:hover .overlay {
+opacity: 1;
+}
+input[type="text"], input[type="email"], textarea {
+transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+border-color: var(--primary-color);
+box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+.form-group {
+position: relative;
+margin-bottom: 1.5rem;
+}
+.form-group label {
+display: block;
+margin-bottom: 0.5rem;
+color: rgba(255, 255, 255, 0.6);
+font-size: 0.875rem;
+}
+.timeline-item {
+position: relative;
+width: 100%;
+display: flex;
+justify-content: flex-start;
+margin-bottom: 3rem;
+}
+.timeline-item.right {
+flex-direction: row-reverse;
+}
+.timeline-dot {
+position: absolute;
+left: 50%;
+top: 2rem;
+transform: translateX(-50%);
+width: 16px;
+height: 16px;
+background: #3B82F6;
+border-radius: 50%;
+z-index: 2;
+border: 4px solid #fff;
+}
+.timeline-content {
+width: 45%;
+}
+.timeline-item.left .timeline-content {
+margin-right: 2.5rem;
+text-align: left;
+}
+.timeline-item.right .timeline-content {
+margin-left: 2.5rem;
+text-align: left;
+}
+.timeline-line {
+position: absolute;
+left: 50%;
+top: 0;
+bottom: 0;
+width: 6px;
+background: #222c3a;
+transform: translateX(-50%);
+z-index: 1;
+border-radius: 3px;
+}
+@media (max-width: 768px) {
+.timeline-item,
+.timeline-item.right {
+flex-direction: column;
+align-items: flex-start;
+}
+.timeline-content {
+width: 100%;
+margin: 0 !important;
+text-align: left !important;
+}
+.timeline-dot {
+left: 0;
+transform: none;
+}
+.timeline-line {
+left: 8px;
+transform: none;
+}
+}
+.particles {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+pointer-events: none;
+overflow: hidden;
+}
+.particle {
+position: absolute;
+background-color: rgba(255, 255, 255, 0.5);
+border-radius: 50%;
+pointer-events: none;
+}
+@keyframes float {
+0% {
+transform: translateY(0) translateX(0);
+}
+50% {
+transform: translateY(-20px) translateX(10px);
+}
+100% {
+transform: translateY(0) translateX(0);
+}
+}
+.floating {
+animation: float 6s ease-in-out infinite;
+}
+.floating-delay-1 {
+animation-delay: 1s;
+}
+.floating-delay-2 {
+animation-delay: 2s;
+}
+.floating-delay-3 {
+animation-delay: 3s;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
+.horizontal-scroll {
+overflow-x: auto;
+scroll-snap-type: x mandatory;
+scrollbar-width: none;
+-ms-overflow-style: none;
+}
+.horizontal-scroll::-webkit-scrollbar {
+display: none;
+}
+.scroll-item {
+scroll-snap-align: start;
+}
+#airplane {
+  top: 0;
+  transition: top 1s cubic-bezier(.4,2,.6,1);
+  z-index: 3;
+}
+</style>
+</head>
+<body class="relative">
+<div class="custom-cursor hidden md:block"></div>
+<div class="celestial-body morning-sun"></div>
+<div class="day-indicator morning"></div>
+<div class="morning-mist"></div>
+<header class="relative w-full z-50" id="main-header">
+<nav class="container mx-auto px-8 lg:px-16 py-6 flex justify-center items-center">
+<div class="hidden md:flex space-x-12">
+<a href="#about" class="text-primary hover:text-primary/80 transition-colors duration-300">About</a>
+<a href="#projects" class="text-primary hover:text-primary/80 transition-colors duration-300">Projects</a>
+<a href="#process" class="text-primary hover:text-primary/80 transition-colors duration-300">Process</a>
+<a href="#contact" class="text-primary hover:text-primary/80 transition-colors duration-300">Contact</a>
+</div>
+<button class="md:hidden text-primary focus:outline-none w-10 h-10 flex items-center justify-center">
+<i class="ri-menu-line ri-2x"></i>
+</button>
+</nav>
+</header>
+<div class="mobile-menu fixed inset-0 bg-black bg-opacity-95 z-40 hidden flex-col justify-center items-center">
+<button class="absolute top-6 right-6 text-white focus:outline-none w-10 h-10 flex items-center justify-center">
+<i class="ri-close-line ri-2x"></i>
+</button>
+<div class="flex flex-col space-y-8 text-center">
+<a href="#about" class="text-white text-2xl hover:text-primary transition-colors duration-300">About</a>
+<a href="#projects" class="text-white text-2xl hover:text-primary transition-colors duration-300">Projects</a>
+<a href="#process" class="text-white text-2xl hover:text-primary transition-colors duration-300">Process</a>
+<a href="#contact" class="text-white text-2xl hover:text-primary transition-colors duration-300">Contact</a>
+</div>
+</div>
+<main>
+<!-- Hero Section (Morning) -->
+<section id="hero" class="section relative flex items-center justify-center min-h-screen overflow-hidden">
+<div class="particles"></div>
+<div class="container mx-auto px-8 lg:px-16 relative z-10">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div class="max-w-2xl">
+<h1 class="text-4xl md:text-7xl font-bold text-white mb-6 animate-in">
+<span class="block">Hi, I'm Siddharthsinh</span>
+<span class="block mt-2">UI/UX Designer</span>
+</h1>
+<p class="text-xl md:text-2xl text-white/80 mb-8 max-w-2xl animate-in" style="animation-delay: 0.2s">
+Creating seamless, user-focused designs driven by logic and aesthetics. Transforming ideas into immersive digital experiences.
+</p>
+<div class="flex flex-col sm:flex-row gap-4 animate-in" style="animation-delay: 0.4s">
+<a href="https://drive.google.com/file/d/1522aAbRAslDxmpfXbvh4P5tjkFO5SBEl/view?usp=sharing" target="_blank" class="!rounded-button bg-primary hover:bg-primary/90 text-white px-8 py-3 font-medium transition-all duration-300 inline-flex items-center whitespace-nowrap">
+Resume
+<i class="ri-external-link-line ml-2"></i>
+</a>
+<a href="#contact" class="!rounded-button border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 font-medium transition-all duration-300 inline-flex items-center whitespace-nowrap">
+Get in Touch
+</a>
+</div>
+</div>
+<div class="flex items-center justify-center">
+  <img src="sid.png" alt="Siddharthsinh Rajput" ;">
+</div>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-black animate-bounce flex flex-col items-center">
+<div class="w-8 h-12 flex items-center justify-center border-2 border-black rounded-full">
+<div class="w-1 h-3 bg-black rounded-full"></div>
+</div>
+<p class="text-sm mt-2 text-center">Scroll Down</p>
+</div>
+</section>
+<!-- About Section (Late Morning) -->
+<section id="about" class="section relative py-24 min-h-screen flex items-center">
+<div class="container mx-auto px-8 lg:px-16">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+<div class="animate-in">
+<h2 class="text-3xl md:text-5xl font-bold text-white mb-6">About Me</h2>
+<p class="text-lg text-white/80 mb-6">
+I'm a passionate and forward-thinking UI/UX designer with a foundation in Computer Science Engineering and Graphic Design. My design philosophy is rooted in functionality, emotional storytelling, and a deep commitment to user-centered thinking.
+</p>
+<p class="text-lg text-white/80 mb-6">
+With hands-on experience across multiple projects, I blend technical knowledge with creative vision to craft interfaces that are not just beautiful, but purposeful and intuitive.
+</p>
+</div>
+<div>
+<div class="grid grid-cols-2 gap-6 animate-in mt-20" style="animation-delay: 0.2s">
+<div class="skill-progress mx-auto text-primary relative">
+<svg width="100" height="100" viewBox="0 0 100 100">
+<circle class="bg" cx="50" cy="50" r="45" />
+<circle class="progress" cx="50" cy="50" r="45" stroke-dasharray="282.74" stroke-dashoffset="28.274" />
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-lg font-bold text-black">90%</span>
+<span class="text-xs text-black whitespace-nowrap mt-0.5">UI Design</span>
+</div>
+</div>
+<div class="skill-progress mx-auto text-secondary relative">
+<svg width="100" height="100" viewBox="0 0 100 100">
+<circle class="bg" cx="50" cy="50" r="45" />
+<circle class="progress" cx="50" cy="50" r="45" stroke-dasharray="282.74" stroke-dashoffset="56.548" />
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-lg font-bold text-black">80%</span>
+<span class="text-xs text-black whitespace-nowrap mt-0.5">UX Research</span>
+</div>
+</div>
+<div class="skill-progress mx-auto text-primary relative">
+<svg width="100" height="100" viewBox="0 0 100 100">
+<circle class="bg" cx="50" cy="50" r="45" />
+<circle class="progress" cx="50" cy="50" r="45" stroke-dasharray="282.74" stroke-dashoffset="42.411" />
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-lg font-bold text-black">85%</span>
+<span class="text-xs text-black whitespace-nowrap mt-0.5">Prototyping</span>
+</div>
+</div>
+<div class="skill-progress mx-auto text-secondary relative">
+<svg width="100" height="100" viewBox="0 0 100 100">
+<circle class="bg" cx="50" cy="50" r="45" />
+<circle class="progress" cx="50" cy="50" r="45" stroke-dasharray="282.74" stroke-dashoffset="70.685" />
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-lg font-bold text-black">75%</span>
+<span class="text-xs text-black whitespace-nowrap mt-0.5">Animation</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<h3 class="text-xl font-semibold text-white mb-4 text-center">Professional Experience</h3>
+<div class="relative max-w-4xl mx-auto pl-6 md:pl-16">
+  <div class="timeline-line"></div>
+  <div id="airplane" class="absolute left-1/2" style="transform: translateX(-50%);">
+    <!-- Airplane SVG or icon here -->
+  </div>
+  <div class="timeline-item left animate-in" style="animation-delay: 0.1s">
+    <div class="timeline-content bg-white/5 rounded-lg p-4 md:mr-12 text-left">
+      <h4 class="font-semibold text-black">Barodaweb</h4>
+      <span class="text-sm text-black/80">Jan 2025–Present</span>
+      <p class="text-primary text-sm mb-2">UI/UX Designer</p>
+      <p class="text-white/80 text-sm">Lead designer for two major mobile applications and multiple web interfaces. Implemented user-centered design principles and conducted extensive user research to enhance product usability.</p>
+    </div>
+  </div>
+  <div class="timeline-item right animate-in" style="animation-delay: 0.2s">
+    <div class="timeline-content bg-white/5 rounded-lg p-4 md:ml-12 text-left">
+      <h4 class="font-semibold text-black">ProCost Systems</h4>
+      <span class="text-sm text-black/80">Jun–Jul 2024</span>
+      <p class="text-primary text-sm mb-2">UI/UX Designer</p>
+      <p class="text-white/80 text-sm">Specialized in prototyping and usability testing. Created interactive prototypes and conducted user testing sessions to validate design solutions.</p>
+    </div>
+  </div>
+  <div class="timeline-item left animate-in" style="animation-delay: 0.3s">
+    <div class="timeline-content bg-white/5 rounded-lg p-4 md:mr-12 text-left">
+      <h4 class="font-semibold text-black">Picartainment</h4>
+      <span class="text-sm text-black/80">Dec 2024–Jan 2025</span>
+      <p class="text-primary text-sm mb-2">Graphic & Web Designer</p>
+      <p class="text-white/80 text-sm">Developed brand-aligned visual assets and web interfaces. Ensured consistent design language across all platforms while maintaining brand identity.</p>
+    </div>
+  </div>
+  <div class="timeline-item right animate-in" style="animation-delay: 0.4s">
+    <div class="timeline-content bg-white/5 rounded-lg p-4 md:ml-12 text-left">
+      <h4 class="font-semibold text-black">Brainpax Technologies</h4>
+      <span class="text-sm text-black/80">Jul–Aug 2023</span>
+      <p class="text-primary text-sm mb-2">Graphic Designer</p>
+      <p class="text-white/80 text-sm">Created logo designs and vector illustrations. Collaborated with the marketing team to develop visual assets for various campaigns.</p>
+    </div>
+  </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+<div>
+<h3 class="text-xl font-semibold text-white mb-3">Education</h3>
+<p class="text-white/80">B.Tech in Computer Science Engineering</p>
+<p class="text-white/80">Diploma in Computer Engineering</p>
+</div>
+<div>
+<h3 class="text-xl font-semibold text-white mb-3">Skills Overview</h3>
+<p class="text-white/80">UI/UX Design</p>
+<p class="text-white/80">Prototyping & Wireframing</p>
+<p class="text-white/80">User Research</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Projects Section (Afternoon) -->
+<section id="projects" class="section relative py-24 min-h-screen">
+<div class="container mx-auto px-8 lg:px-16">
+<div class="text-center mb-16 animate-in">
+<h2 class="text-3xl md:text-5xl font-bold text-white mb-4">Featured Projects</h2>
+<p class="text-lg text-white/80 max-w-2xl mx-auto">
+A selection of my recent work spanning various industries and design challenges.
+</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+<div class="project-card bg-white/10 backdrop-blur-md rounded-lg overflow-hidden animate-in" style="animation-delay: 0.1s">
+<div class="relative h-56 overflow-hidden">
+<img src="https://static.readdy.ai/image/f40f19c1d10574164f5358b8b3005af7/69ae8844e0768a7fdd510fc304e16b2f.png" alt="Marwiz Living App" class="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-110">
+<div class="overlay absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-black mb-1">Marwiz Living</h3>
+<p class="text-black/80 mb-4">Residential Management App</p>
+<p class="text-white/80 mb-4">Marwiz Living is a smart residential app that streamlines gate access, visitor tracking, and security communication for a safer, more connected community experience.</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="text-xs bg-white/20 text-black px-3 py-1 rounded-full">Wireframing</span>
+<span class="text-xs bg-white/20 text-black px-3 py-1 rounded-full">UI Design</span>
+<span class="text-xs bg-white/20 text-black px-3 py-1 rounded-full">UX Research</span>
+<span class="text-xs bg-white/20 text-black px-3 py-1 rounded-full">Prototyping</span>
+<span class="text-xs bg-white/20 text-black px-3 py-1 rounded-full">Animation</span>
+</div>
+<a href="https://play.google.com/store/apps/details?id=com.barodaweb.MarwizLiving&hl=en_IN" target="_blank" class="!rounded-button inline-flex items-center text-primary hover:text-white hover:bg-primary px-4 py-2 border border-primary transition-colors duration-300 whitespace-nowrap">
+View App
+<i class="ri-arrow-right-line ml-2"></i>
+</a>
+</div>
+</div>
+<div class="project-card bg-white/10 backdrop-blur-md rounded-lg overflow-hidden animate-in" style="animation-delay: 0.2s">
+<div class="relative h-56 overflow-hidden">
+<img src="https://static.readdy.ai/image/f40f19c1d10574164f5358b8b3005af7/349673eaa293bea304f6bba2bcef3c42.png" alt="Marwiz Living Guard App" class="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-110">
+<div class="overlay absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-black mb-1">Marwiz Living - Guard</h3>
+<p class="text-black/80 mb-4">Security Guard App</p>
+<p class="text-white/80 mb-4">Marwiz Living Security Guard App empowers residents with real-time updates, issue reporting, service requests, and seamless management of deliveries and amenities.</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="text-xs bg-white/20 text-black px-3 py-1 rounded-full">Wireframing</span>
+<span class="text-xs bg-white/20 text-black px-3 py-1 rounded-full">UI Design</span>
+<span class="text-xs bg-white/20 text-black px-3 py-1 rounded-full">UX Research</span>
+<span class="text-xs bg-white/20 text-black px-3 py-1 rounded-full">Prototyping</span>
+<span class="text-xs bg-white/20 text-black px-3 py-1 rounded-full">Animation</span>
+</div>
+<a href="https://play.google.com/store/apps/details?id=com.barodaweb.MarwizLivingGuard&hl=en_IN" target="_blank" class="!rounded-button inline-flex items-center text-primary hover:text-white hover:bg-primary px-4 py-2 border border-primary transition-colors duration-300 whitespace-nowrap">
+View App
+<i class="ri-arrow-right-line ml-2"></i>
+</a>
+</div>
+</div>
+<div class="project-card bg-white/10 backdrop-blur-md rounded-lg overflow-hidden animate-in" style="animation-delay: 0.3s">
+<div class="relative h-56 overflow-hidden">
+<img src="https://static.readdy.ai/image/f40f19c1d10574164f5358b8b3005af7/73900aa313f7e198b0448c3b3b2c41b2.jpeg" alt="BWeb Events App" class="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-110">
+<div class="overlay absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold text-black mb-1">BWeb Events</h3>
+<p class="text-black/80 mb-4">Event Management App</p>
+<p class="text-white/80 mb-4">Bweb Events is an all-in-one app that streamlines event management, networking, scheduling, and access to exclusive event perks for a seamless experience.</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="text-xs bg-white/20 text-black px-3 py-1 rounded-full">Wireframing</span>
+<span class="text-xs bg-white/20 text-black px-3 py-1 rounded-full">UI Design</span>
+<span class="text-xs bg-white/20 text-black px-3 py-1 rounded-full">Prototyping</span>
+<span class="text-xs bg-white/20 text-black px-3 py-1 rounded-full">Animation</span>
+</div>
+<a href="https://play.google.com/store/apps/details?id=com.barodaweb.BwebEvents&hl=en_IN" target="_blank" class="!rounded-button inline-flex items-center text-primary hover:text-white hover:bg-primary px-4 py-2 border border-primary transition-colors duration-300 whitespace-nowrap">
+View App
+<i class="ri-arrow-right-line ml-2"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Process Section (Evening) -->
+<section id="process" class="section relative py-24 min-h-screen flex items-center">
+<div class="container mx-auto px-8 lg:px-16">
+<div class="text-center mb-16 animate-in">
+<h2 class="text-3xl md:text-5xl font-bold text-white mb-4">My Design Process</h2>
+<p class="text-lg text-white/80 max-w-2xl mx-auto">
+A structured yet flexible approach that ensures thoughtful, user-centered solutions.
+</p>
+</div>
+<div class="relative max-w-4xl mx-auto pl-12 md:pl-16">
+<div class="absolute left-0 top-0 bottom-0 w-0.5 bg-white/20"></div>
+<div class="timeline-item pb-16 animate-in" style="animation-delay: 0.1s">
+<div class="timeline-content bg-white/10 backdrop-blur-md rounded-lg p-6 md:p-8">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4">
+<i class="ri-search-line ri-lg text-primary"></i>
+</div>
+<h3 class="text-2xl font-bold text-white">Discover</h3>
+</div>
+<p class="text-white/80">
+I begin by immersing myself in research to understand the problem space, user needs, and business goals. This includes stakeholder interviews, competitive analysis, and user research to establish a solid foundation for the design process.
+</p>
+<div class="mt-4 flex flex-wrap gap-3">
+<span class="text-xs bg-white/10 text-white/80 px-3 py-1 rounded-full">User Interviews</span>
+<span class="text-xs bg-white/10 text-white/80 px-3 py-1 rounded-full">Market Research</span>
+<span class="text-xs bg-white/10 text-white/80 px-3 py-1 rounded-full">Competitive Analysis</span>
+</div>
+</div>
+</div>
+<div class="timeline-item pb-16 animate-in" style="animation-delay: 0.2s">
+<div class="timeline-content bg-white/10 backdrop-blur-md rounded-lg p-6 md:p-8">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4">
+<i class="ri-focus-2-line ri-lg text-primary"></i>
+</div>
+<h3 class="text-2xl font-bold text-white">Define</h3>
+</div>
+<p class="text-white/80">
+I synthesize research findings to define clear problem statements and user personas. This phase establishes the strategic direction for the design, identifying key opportunities and constraints to guide the creative process.
+</p>
+<div class="mt-4 flex flex-wrap gap-3">
+<span class="text-xs bg-white/10 text-white/80 px-3 py-1 rounded-full">User Personas</span>
+<span class="text-xs bg-white/10 text-white/80 px-3 py-1 rounded-full">Journey Mapping</span>
+<span class="text-xs bg-white/10 text-white/80 px-3 py-1 rounded-full">Problem Definition</span>
+</div>
+</div>
+</div>
+<div class="timeline-item pb-16 animate-in" style="animation-delay: 0.3s">
+<div class="timeline-content bg-white/10 backdrop-blur-md rounded-lg p-6 md:p-8">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4">
+<i class="ri-palette-line ri-lg text-primary"></i>
+</div>
+<h3 class="text-2xl font-bold text-white">Design</h3>
+</div>
+<p class="text-white/80">
+I explore multiple design concepts through sketching, wireframing, and prototyping. This iterative process allows me to refine ideas, establish visual direction, and create comprehensive design systems that ensure consistency.
+</p>
+<div class="mt-4 flex flex-wrap gap-3">
+<span class="text-xs bg-white/10 text-white/80 px-3 py-1 rounded-full">Wireframing</span>
+<span class="text-xs bg-white/10 text-white/80 px-3 py-1 rounded-full">UI Design</span>
+<span class="text-xs bg-white/10 text-white/80 px-3 py-1 rounded-full">Prototyping</span>
+</div>
+</div>
+</div>
+<div class="timeline-item animate-in" style="animation-delay: 0.4s">
+<div class="timeline-content bg-white/10 backdrop-blur-md rounded-lg p-6 md:p-8">
+<div class="flex items-center mb-4">
+<div class="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center mr-4">
+<i class="ri-test-tube-line ri-lg text-primary"></i>
+</div>
+<h3 class="text-2xl font-bold text-white">Deliver</h3>
+</div>
+<p class="text-white/80">
+I validate designs through user testing and stakeholder feedback, making necessary refinements. The final deliverables include production-ready assets, documentation, and implementation guidance to ensure successful execution.
+</p>
+<div class="mt-4 flex flex-wrap gap-3">
+<span class="text-xs bg-white/10 text-white/80 px-3 py-1 rounded-full">User Testing</span>
+<span class="text-xs bg-white/10 text-white/80 px-3 py-1 rounded-full">Design Handoff</span>
+<span class="text-xs bg-white/10 text-white/80 px-3 py-1 rounded-full">Implementation Support</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section (Night) -->
+<section id="contact" class="section relative py-20 min-h-screen flex items-center">
+<div class="particles"></div>
+<div class="container mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+<div class="animate-in">
+<h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Get In Touch</h2>
+<p class="text-lg text-white/80 mb-8">
+Have a project in mind or want to discuss potential collaborations? I'd love to hear from you. Let's create something amazing together.
+</p>
+<div class="space-y-6">
+<div class="flex items-center">
+<div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mr-4">
+<i class="ri-mail-line ri-lg text-primary"></i>
+</div>
+<div>
+<h3 class="text-lg font-semibold text-white">Email</h3>
+<a href="mailto:rajputsiddharthsinh007@gmail.com" class="text-white/80 hover:text-primary transition-colors">rajputsiddharthsinh007@gmail.com</a>
+</div>
+</div>
+<div class="flex items-center">
+<div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mr-4">
+<i class="ri-phone-line ri-lg text-primary"></i>
+</div>
+<div>
+<h3 class="text-lg font-semibold text-white">Phone</h3>
+<a href="tel:+917990263488" class="text-white/80 hover:text-primary transition-colors">+91 7990263488</a>
+</div>
+</div>
+<div class="flex items-center">
+<div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mr-4">
+<i class="ri-map-pin-line ri-lg text-primary"></i>
+</div>
+<div>
+<h3 class="text-lg font-semibold text-white">Location</h3>
+<p class="text-white/80">Vadodara, Gujarat, India</p>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<h3 class="text-lg font-semibold text-white mb-4">Connect With Me</h3>
+<div class="flex space-x-6">
+<a href="https://www.linkedin.com/in/siddharthsinh-rajput007/" target="_blank" class="w-14 h-14 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-300">
+<i class="ri-linkedin-fill ri-xl text-white"></i>
+</a>
+<a href="https://www.instagram.com/siddwakeeup?igsh=MXZuNnFwMW5zbzh0eQ%3D%3D&utm_source=qr" target="_blank" class="w-14 h-14 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary transition-colors duration-300">
+<i class="ri-instagram-fill ri-xl text-white"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="bg-white/10 backdrop-blur-md rounded-lg p-8 animate-in" style="animation-delay: 0.2s">
+<h3 class="text-2xl font-bold text-white mb-6">Send Me a Message</h3>
+<form action="https://formspree.io/f/mjkrjndj" method="POST" class="space-y-6">
+<div class="form-group">
+<label for="name">Your Name</label>
+<input type="text" id="name" name="name" class="w-full bg-white/5 border-none text-white px-4 py-3 rounded focus:ring-2 focus:ring-primary outline-none" required>
+</div>
+<div class="form-group">
+<label for="email">Your Email</label>
+<input type="email" id="email" name="email" class="w-full bg-white/5 border-none text-white px-4 py-3 rounded focus:ring-2 focus:ring-primary outline-none" required>
+</div>
+<div class="form-group">
+<label for="subject">Subject</label>
+<input type="text" id="subject" name="subject" class="w-full bg-white/5 border-none text-white px-4 py-3 rounded focus:ring-2 focus:ring-primary outline-none">
+</div>
+<div class="form-group">
+<label for="message">Your Message</label>
+<textarea id="message" name="message" rows="4" class="w-full bg-white/5 border-none text-white px-4 py-3 rounded focus:ring-2 focus:ring-primary outline-none resize-none" required></textarea>
+</div>
+<button type="submit" class="!rounded-button w-full bg-primary hover:bg-primary/90 text-white py-3 font-medium transition-all duration-300 whitespace-nowrap">
+Send Message
+</button>
+</form>
+</div>
+</div>
+</div>
+</section>
+</main>
+<div class="relative py-8 flex justify-center">
+<a href="#hero" class="!rounded-button bg-primary hover:bg-primary/90 text-white px-6 py-2 font-medium transition-all duration-300 inline-flex items-center whitespace-nowrap">
+Back to Morning
+<i class="ri-arrow-up-line ml-1"></i>
+</a>
+</div>
+<footer class="bg-black/50 backdrop-blur-md py-8">
+<div class="container mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between items-center">
+<div class="mb-6 md:mb-0">
+<p class="text-white/60">UI/UX Designer & Creative Thinker</p>
+</div>
+<div class="flex flex-col items-center md:items-end">
+<p class="text-white/60">© 2025 Siddharthsinh Rajput. All rights reserved.</p>
+</div>
+</div>
+</div>
+</footer>
+<script id="cursor-script">
+document.addEventListener('DOMContentLoaded', function() {
+const cursor = document.querySelector('.custom-cursor');
+if (cursor) {
+document.addEventListener('mousemove', (e) => {
+cursor.style.left = e.clientX + 'px';
+cursor.style.top = e.clientY + 'px';
+});
+document.addEventListener('mousedown', () => {
+cursor.classList.add('scale-75');
+});
+document.addEventListener('mouseup', () => {
+cursor.classList.remove('scale-75');
+});
+const hoverElements = document.querySelectorAll('a, button, .project-card, .tool-item');
+hoverElements.forEach(element => {
+element.addEventListener('mouseenter', () => {
+cursor.classList.add('hover');
+});
+element.addEventListener('mouseleave', () => {
+cursor.classList.remove('hover');
+});
+});
+}
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script id="scroll-animation-script">
+document.addEventListener('DOMContentLoaded', function() {
+function createShootingStar() {
+const starsContainer = document.querySelector('.stars');
+const staticStars = starsContainer.querySelectorAll('.star');
+if (staticStars.length === 0) return;
+// Select a random static star as starting point
+const randomStar = staticStars[Math.floor(Math.random() * staticStars.length)];
+const starRect = randomStar.getBoundingClientRect();
+const containerRect = starsContainer.getBoundingClientRect();
+const star = document.createElement('div');
+star.className = 'shooting-star';
+// Position relative to the selected static star
+const startX = (starRect.left - containerRect.left) / containerRect.width * 100;
+const startY = (starRect.top - containerRect.top) / containerRect.height * 100;
+star.style.left = `${startX}%`;
+star.style.top = `${startY}%`;
+// Determine direction (left-to-right or right-to-left)
+const goingRight = Math.random() > 0.5;
+const angle = goingRight ?
+(Math.random() * 10 - 5) :
+(Math.random() * 10 + 175);
+star.style.setProperty('--angle', `${angle}deg`);
+// Calculate travel distance based on screen width
+const distance = containerRect.width * (0.3 + Math.random() * 0.4);
+star.style.setProperty('--travel-distance', `${distance}px`);
+// Smoother animation with custom easing
+const duration = Math.random() * 0.8 + 1.2;
+star.style.animation = `shoot ${duration}s cubic-bezier(0.25, 0.1, 0.25, 1) forwards`;
+starsContainer.appendChild(star);
+// Clean up after animation
+setTimeout(() => star.remove(), duration * 1000);
+// Create a subtle trail effect
+const trail = document.createElement('div');
+trail.className = 'shooting-star';
+trail.style.cssText = star.style.cssText;
+trail.style.opacity = '0.2';
+trail.style.width = '80px';
+trail.style.animation = `shoot ${duration * 1.1}s cubic-bezier(0.25, 0.1, 0.25, 1) forwards`;
+starsContainer.appendChild(trail);
+setTimeout(() => trail.remove(), duration * 1100);
+}
+const sections = document.querySelectorAll('.section');
+const body = document.body;
+const celestialBody = document.querySelector('.celestial-body');
+const morningMist = document.querySelector('.morning-mist');
+const mainHeader = document.getElementById('main-header');
+let shootingStarsInterval;
+window.addEventListener('scroll', () => {
+const scrollPosition = window.scrollY;
+const totalHeight = document.body.scrollHeight - window.innerHeight;
+const scrollPercentage = scrollPosition / totalHeight;
+if (scrollPercentage >= 0.75) {
+if (!shootingStarsInterval) {
+let lastStarTime = Date.now();
+shootingStarsInterval = setInterval(() => {
+const now = Date.now();
+const timeSinceLastStar = now - lastStarTime;
+const randomDelay = Math.random() * 700 + 800;
+if (timeSinceLastStar >= randomDelay) {
+createShootingStar();
+lastStarTime = now;
+}
+}, 100);
+}
+} else if (shootingStarsInterval) {
+clearInterval(shootingStarsInterval);
+shootingStarsInterval = null;
+}
+});
+// Remove header visibility control
+function createClouds() {
+const cloudLayer = document.createElement('div');
+cloudLayer.className = 'cloud-layer';
+document.body.appendChild(cloudLayer);
+for (let i = 0; i < 5; i++) {
+const cloud = document.createElement('div');
+cloud.className = 'cloud';
+cloud.style.width = `${Math.random() * 300 + 200}px`;
+cloud.style.height = `${Math.random() * 60 + 40}px`;
+cloud.style.top = `${Math.random() * 60}%`;
+cloud.style.left = `${Math.random() * 100}%`;
+cloud.style.animationDuration = `${Math.random() * 20 + 30}s`;
+cloudLayer.appendChild(cloud);
+}
+}
+function createStars() {
+const starsContainer = document.createElement('div');
+starsContainer.className = 'stars';
+document.body.appendChild(starsContainer);
+for (let i = 0; i < 100; i++) {
+const star = document.createElement('div');
+star.className = 'star';
+star.style.left = `${Math.random() * 100}%`;
+star.style.top = `${Math.random() * 100}%`;
+star.style.animation = `twinkle ${Math.random() * 3 + 2}s ease-in-out infinite`;
+starsContainer.appendChild(star);
+}
+}
+function createAmbientParticles() {
+const particlesContainer = document.createElement('div');
+particlesContainer.className = 'ambient-particles';
+document.body.appendChild(particlesContainer);
+for (let i = 0; i < 50; i++) {
+const particle = document.createElement('div');
+particle.className = 'particle';
+particle.style.left = `${Math.random() * 100}%`;
+particle.style.top = `${Math.random() * 100}%`;
+particle.style.opacity = Math.random() * 0.3;
+particle.style.animation = `float ${Math.random() * 10 + 5}s ease-in-out infinite`;
+particlesContainer.appendChild(particle);
+}
+}
+createClouds();
+createStars();
+createAmbientParticles();
+const sunRays = document.createElement('div');
+sunRays.className = 'sun-rays';
+celestialBody.appendChild(sunRays);
+const lensFlare = document.createElement('div');
+lensFlare.className = 'lens-flare';
+celestialBody.appendChild(lensFlare);
+gsap.registerPlugin(ScrollTrigger);
+// Celestial animation setup
+gsap.to(morningMist, {
+opacity: 0,
+scrollTrigger: {
+trigger: "#hero",
+start: "top top",
+end: "bottom top",
+scrub: true
+}
+});
+// Time of day colors and text colors
+const theme = {
+morning: {
+bg: 'var(--morning-color)',
+text: '#1C1C1E',
+textSoft: 'rgba(28, 28, 30, 0.8)'
+},
+afternoon: {
+bg: 'var(--afternoon-color)',
+text: '#000000',
+textSoft: 'rgba(0, 0, 0, 0.8)'
+},
+evening: {
+bg: 'var(--evening-color)',
+text: '#FAFAFA',
+textSoft: '#FFF4E6'
+},
+night: {
+bg: 'var(--night-color)',
+text: '#FFFFFF',
+textSoft: '#3B72FF'
+}
+};
+// Animation on scroll
+const animateElements = document.querySelectorAll('.animate-in');
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('visible');
+}
+});
+}, {
+threshold: 0.1
+});
+animateElements.forEach(element => {
+observer.observe(element);
+});
+// Scroll-based theme change
+function updateTheme() {
+const scrollPosition = window.scrollY;
+const totalHeight = document.body.scrollHeight - window.innerHeight;
+const scrollPercentage = scrollPosition / totalHeight;
+let currentTheme;
+const dayIndicator = document.querySelector('.day-indicator');
+const celestialBody = document.querySelector('.celestial-body');
+// Update CSS variables
+const updateColors = (theme) => {
+gsap.to(document.documentElement, {
+duration: 0.3,
+ease: 'power2.out',
+'--text-primary': theme.text,
+'--text-soft': theme.textSoft,
+'--icon-primary': theme.iconPrimary,
+'--icon-soft': theme.iconSoft,
+'--border-color': theme.borderColor,
+'--card-bg': theme.cardBg
+});
+// Update text colors for specific elements with GSAP
+gsap.to('h1, h2, h3, .text-dynamic', {
+color: theme.text,
+duration: 0.3,
+ease: 'power2.out'
+});
+gsap.to('p, .text-dynamic-soft', {
+color: theme.textSoft,
+duration: 0.3,
+ease: 'power2.out'
+});
+// Update icons
+gsap.to('.ri-lg, .ri-xl, .ri-2x, .ri-3x', {
+color: theme.iconPrimary,
+duration: 0.3,
+ease: 'power2.out'
+});
+// Update borders and backgrounds
+gsap.to('.bg-white\\/10', {
+backgroundColor: theme.cardBg,
+duration: 0.3,
+ease: 'power2.out'
+});
+gsap.to('[class*="border"]', {
+borderColor: theme.borderColor,
+duration: 0.3,
+ease: 'power2.out'
+});
+// Ensure high contrast for interactive elements
+const buttons = document.querySelectorAll('button, a');
+buttons.forEach(button => {
+if (button.classList.contains('bg-primary')) {
+gsap.to(button, {
+backgroundColor: theme.iconPrimary,
+duration: 0.3,
+ease: 'power2.out'
+});
+}
+});
+};
+// Update celestial body appearance
+if (scrollPercentage < 0.25) {
+celestialBody.className = 'celestial-body morning-sun';
+updateColors(theme.morning);
+gsap.to(celestialBody, {
+scale: 1,
+opacity: 0.8,
+duration: 0.5
+});
+gsap.to(sunRays, {
+opacity: 0.4,
+scale: 1.2,
+duration: 0.5
+});
+gsap.to(lensFlare, {
+opacity: 0.3,
+duration: 0.5
+});
+document.querySelectorAll('.cloud').forEach(cloud => {
+gsap.to(cloud, {
+opacity: 0.15,
+duration: 0.5
+});
+});
+gsap.to('.stars', {
+opacity: 0,
+duration: 0.5
+});
+} else if (scrollPercentage < 0.5) {
+celestialBody.className = 'celestial-body afternoon-sun';
+updateColors(theme.afternoon);
+gsap.to(celestialBody, {
+scale: 1.2,
+opacity: 1,
+duration: 0.5
+});
+gsap.to(sunRays, {
+opacity: 0.8,
+scale: 1.5,
+duration: 0.5
+});
+gsap.to(lensFlare, {
+opacity: 0.6,
+duration: 0.5
+});
+document.querySelectorAll('.cloud').forEach(cloud => {
+gsap.to(cloud, {
+opacity: 0.1,
+duration: 0.5
+});
+});
+gsap.to('.stars', {
+opacity: 0,
+duration: 0.5
+});
+} else if (scrollPercentage < 0.75) {
+celestialBody.className = 'celestial-body evening-sun';
+updateColors(theme.evening);
+gsap.to(celestialBody, {
+scale: 1.1,
+opacity: 0.9,
+duration: 0.5
+});
+gsap.to(sunRays, {
+opacity: 0.6,
+scale: 1.3,
+duration: 0.5
+});
+gsap.to(lensFlare, {
+opacity: 0.4,
+duration: 0.5
+});
+document.querySelectorAll('.cloud').forEach(cloud => {
+gsap.to(cloud, {
+opacity: 0.2,
+backgroundColor: 'rgba(255,150,100,0.2)',
+duration: 0.5
+});
+});
+gsap.to('.stars', {
+opacity: 0.2,
+duration: 0.5
+});
+} else {
+celestialBody.className = 'celestial-body night-moon';
+updateColors(theme.night);
+gsap.to(celestialBody, {
+scale: 0.8,
+opacity: 0.7,
+duration: 0.5
+});
+gsap.to(sunRays, {
+opacity: 0,
+scale: 1,
+duration: 0.5
+});
+gsap.to(lensFlare, {
+opacity: 0.2,
+duration: 0.5
+});
+document.querySelectorAll('.cloud').forEach(cloud => {
+gsap.to(cloud, {
+opacity: 0.05,
+backgroundColor: 'rgba(255,255,255,0.05)',
+duration: 0.5
+});
+});
+gsap.to('.stars', {
+opacity: 1,
+duration: 0.5
+});
+}
+if (scrollPercentage < 0.25) {
+currentTheme = theme.morning;
+dayIndicator.className = 'day-indicator morning';
+} else if (scrollPercentage < 0.5) {
+currentTheme = theme.afternoon;
+dayIndicator.className = 'day-indicator afternoon';
+} else if (scrollPercentage < 0.75) {
+currentTheme = theme.evening;
+dayIndicator.className = 'day-indicator evening';
+} else {
+currentTheme = theme.night;
+dayIndicator.className = 'day-indicator night';
+}
+// Update background color
+body.style.backgroundColor = currentTheme.bg;
+// Update text colors
+document.documentElement.style.setProperty('--text-primary', currentTheme.text);
+document.documentElement.style.setProperty('--text-soft', currentTheme.textSoft);
+// Update text colors for specific elements
+document.querySelectorAll('h1, h2, h3, .text-dynamic').forEach(el => {
+el.style.color = currentTheme.text;
+});
+document.querySelectorAll('p, .text-dynamic-soft').forEach(el => {
+el.style.color = currentTheme.textSoft;
+});
+}
+window.addEventListener('scroll', updateTheme);
+updateTheme(); // Initial call
+});
+</script>
+<script id="particles-script">
+document.addEventListener('DOMContentLoaded', function() {
+const particlesContainers = document.querySelectorAll('.particles');
+particlesContainers.forEach(container => {
+const isHero = container.closest('#hero');
+const isContact = container.closest('#contact');
+// Number of particles based on section
+const particleCount = isHero ? 50 : 30;
+// Create particles
+for (let i = 0; i < particleCount; i++) {
+const particle = document.createElement('div');
+particle.classList.add('particle');
+// Random size
+const size = Math.random() * 4 + 1;
+particle.style.width = `${size}px`;
+particle.style.height = `${size}px`;
+// Random position
+const posX = Math.random() * 100;
+const posY = Math.random() * 100;
+particle.style.left = `${posX}%`;
+particle.style.top = `${posY}%`;
+// Random opacity
+const opacity = Math.random() * 0.5 + 0.1;
+particle.style.opacity = opacity;
+// Animation
+const duration = Math.random() * 20 + 10;
+const delay = Math.random() * 10;
+particle.style.animation = `float ${duration}s ease-in-out ${delay}s infinite`;
+container.appendChild(particle);
+}
+});
+});
+</script>
+<script id="mobile-menu-script">
+document.addEventListener('DOMContentLoaded', function() {
+const menuButton = document.querySelector('nav button');
+const closeButton = document.querySelector('.mobile-menu button');
+const mobileMenu = document.querySelector('.mobile-menu');
+const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+if (menuButton && closeButton && mobileMenu) {
+menuButton.addEventListener('click', () => {
+mobileMenu.classList.remove('hidden');
+mobileMenu.classList.add('flex');
+document.body.style.overflow = 'hidden';
+});
+closeButton.addEventListener('click', () => {
+mobileMenu.classList.add('hidden');
+mobileMenu.classList.remove('flex');
+document.body.style.overflow = '';
+});
+mobileMenuLinks.forEach(link => {
+link.addEventListener('click', () => {
+mobileMenu.classList.add('hidden');
+mobileMenu.classList.remove('flex');
+document.body.style.overflow = '';
+});
+});
+}
+});
+</script>
+<script id="smooth-scroll-script">
+document.addEventListener('DOMContentLoaded', function() {
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function(e) {
+e.preventDefault();
+const targetId = this.getAttribute('href');
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+window.scrollTo({
+top: targetElement.offsetTop,
+behavior: 'smooth'
+});
+}
+});
+});
+});
+</script>
+</body>
+</html>
